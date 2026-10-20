@@ -5,7 +5,7 @@ int secretNumber = random.Next(1, 101);
 int guess;
 int triesAllowed = 4;
 int currentTries = 0;
-
+string message = "";
 //Console.WriteLine($"Your guess: {guess}");
 bool success = false;
 while (currentTries < triesAllowed && success == false)
@@ -25,8 +25,26 @@ while (currentTries < triesAllowed && success == false)
     }
     else
     {
-        Console.WriteLine(@"Wrong guess. Try again");
+        if (guess > secretNumber && (guess - secretNumber) >= 10)
+        {
+            message = "Your guess was too high";
+        }
+        else if (guess < secretNumber && (secretNumber - guess) >= 10)
+        {
+            message = "Your guess was too low";
+        }
+        else if (guess > secretNumber)
+        {
+            message = "Your guess was high";
+        }
+        else if (guess < secretNumber)
+        {
+            message = "Your guess was low";
+        }
+        Console.WriteLine(@$"Wrong guess.{message}");
     }
     currentTries += 1;
 }
+
+Console.WriteLine((success ? "" : $"The secret number is {secretNumber}, better luck next time!"));
 
