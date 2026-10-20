@@ -2,13 +2,14 @@
 int secretNumber = 42;
 
 int guess;
-int tries = 4;
+int triesAllowed = 4;
+int currentTries = 0;
 
 //Console.WriteLine($"Your guess: {guess}");
 bool success = false;
-while (tries > 0 && success == false)
+while (currentTries < triesAllowed && success == false)
 {
-    Console.WriteLine("Your guess:");
+    Console.WriteLine($"Your guess{(currentTries > 0 ? $"({currentTries + 1})>" : ">")}");
 
     while (!int.TryParse(Console.ReadLine(), out guess))
     {
@@ -24,6 +25,6 @@ while (tries > 0 && success == false)
     {
         Console.WriteLine("Wrong guess. Try again");
     }
-    tries -= 1;
+    currentTries += 1;
 }
 
